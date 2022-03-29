@@ -1,11 +1,12 @@
 // 1. Use the D3 library to read in the `samples.json`.
+const samples_json = "https://raw.githubusercontent.com/thelearning1/thelearning1.github.io/main/static/js/samples.json"
 function gimmePlots(id)  {
-    d3.json("samples.json").then(dataSamples =>{
+    d3.json(samples_json).then(dataSamples =>{
         console.log(dataSamples)
         
         let ids = dataSamples.samples[0].otu_ids;
         console.log(ids)
-
+        
         let sampleValues = dataSamples.samples[0].sample_values.slice(0,10).reverse();
         console.log(sampleValues)
 
@@ -90,7 +91,7 @@ function gimmePlots(id)  {
 // create the function to get the necessary data for the existing Demographics panel
 function gimmeDemog(id) {
 // d3.json to read the data
-    d3.json("samples.json").then((samplesData)=> {
+    d3.json(samples_json).then((samplesData)=> {
         // get the metadata index 
         let metadata = samplesData.metadata;
 
@@ -125,7 +126,7 @@ function init() {
     let dropdownMenu = d3.select("#selDataset");
 
     // pull the data in
-    d3.json("samples.json").then((samplesData)=> {
+    d3.json(samples_json).then((samplesData)=> {
         // get the id data to the dropdwown menu
         samplesData.names.forEach(names => 
             dropdownMenu.append("option").text(names).property("value")
