@@ -4,17 +4,20 @@ function gimmePlots(id)  {
     d3.json(samples_json).then(dataSamples =>{
         console.log(dataSamples)
         
+        //pull the otu ids as a variable
         let ids = dataSamples.samples[0].otu_ids;
         console.log(ids)
         
+        //pull the top 10 values to fill the chart with
         let sampleValues = dataSamples.samples[0].sample_values.slice(0,10).reverse();
         console.log(sampleValues)
-
+        
+        //pull the top 10 labels to create the hover labels
         let labels = dataSamples.samples[0].otu_labels.slice(0,10);
         console.log (labels)
         
-        // get only top 10 otu ids for the plot OTU and reversing it. 
-        let top10 = (dataSamples.samples[0].otu_ids.slice(0, 10)).reverse();
+        // get only top 10 otu ids for plot. 
+        let top10 = (ids.slice(0, 10)).reverse();
         
         // get the otu id's to the desired form for the plot
         let OTU_id = top10.map(d => "OTU " + d);
@@ -38,15 +41,13 @@ function gimmePlots(id)  {
 
         // create layout variable to set plots layout
         let bar_layout = {
-            title: "Top 10 OTU",
-            yaxis:{
-                tickmode:"linear",
-            },
+            title: "Top OTU Comparison",
+            yaxis:{tickmode:"linear",},
             margin: {
-                l: 100,
-                r: 100,
-                t: 100,
-                b: 30
+                l: 50,
+                r: 50,
+                t: 50,
+                b: 50
             }
         };
     // display the bar chart
@@ -108,7 +109,7 @@ function gimmeDemog(id) {
     // grab the necessary demographic data data for the id and append the info to the panel
 
         Object.entries(results).forEach((key) => {   
-            demogData.push("h5").text(key[0] + " - " + key[1] + "\n");    
+            demogData.append("h5").text(key[0] + " - " + key[1] + "\n");    
         });
     });
 }
