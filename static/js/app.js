@@ -27,7 +27,7 @@ function gimmePlots(id)  {
         
         // map the otu id's to their values
         let OTU_ids = top10.map(x => "OTU " + x);
-        console.log(`OTU IDS: ${OTU_id}`)
+        console.log(OTU_ids)
      
         // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
         //create the trace for the plot
