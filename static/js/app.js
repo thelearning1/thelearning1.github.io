@@ -20,7 +20,7 @@ function gimmePlots(id)  {
 
         //pull the otu ids as a variable
         let top10 = subject.otu_ids.slice(0, 10).reverse();
-        console.log(ids);
+        console.log(top10);
         
         // get only top 10 otu ids for plot. 
         // let top10 = (ids.slice(0, 10)).reverse();
@@ -50,7 +50,7 @@ function gimmePlots(id)  {
             title: "Top OTU Comparison",
             yaxis:{tickmode:"linear",},
             margin: {
-                l: 100,
+                l: 200,
                 r: 50,
                 t: 50,
                 b: 50
@@ -95,7 +95,7 @@ function gimmePlots(id)  {
 // 4. Display the sample metadata, i.e., an individual's demographic information.
 // create the function to get the necessary data for the existing Demographics panel
 function gimmeDemog(id) {
-// d3.json to read the dat
+// d3.json to read the data
     d3.json(samples_json).then((samplesData)=> {
         // get the metadata index 
         let metadata = samplesData.metadata;
