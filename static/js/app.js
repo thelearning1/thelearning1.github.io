@@ -1,11 +1,11 @@
 // 1. Use the D3 library to read in the `samples.json`.
 const samples_json = "https://raw.githubusercontent.com/thelearning1/thelearning1.github.io/main/static/js/samples.json"
 function gimmePlots(id)  {
-    d3.json(samples_json).then(dataSamples =>{
-        console.log(dataSamples)
+    d3.json(samples_json).then((samplesData) =>{
+        console.log(samplesData)
         
         //filter the data to select based on the value in the dropdown
-        let samplesArray = dataSamples.samples[0];
+        let samplesArray = samplesData.samples[0];
 
         // sort sample data by the id
         let subject = samplesArray.filter(samplids => samplids.id.toString() === id)[0];
@@ -70,7 +70,7 @@ function gimmePlots(id)  {
             marker: {
                 size: subject.sample_values,
                 // * Use `otu_ids` for the marker colors.
-                color: dataSamples.samples[0].otu_ids
+                color: samplesData.samples[0].otu_ids
             },
             // * Use `otu_labels` for the text values.
             text:  subject.otu_labels
@@ -89,14 +89,13 @@ function gimmePlots(id)  {
 
     // create the bubble plot
     Plotly.newPlot("bubble", bub_data, bub_layout); 
-    
     });
 }
 
 // 4. Display the sample metadata, i.e., an individual's demographic information.
 // create the function to get the necessary data for the existing Demographics panel
 function gimmeDemog(id) {
-// d3.json to read the data
+// d3.json to read the dat
     d3.json(samples_json).then((samplesData)=> {
         // get the metadata index 
         let metadata = samplesData.metadata;
