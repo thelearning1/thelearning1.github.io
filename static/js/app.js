@@ -4,23 +4,29 @@ function gimmePlots(id)  {
     d3.json(samples_json).then(dataSamples =>{
         console.log(dataSamples)
         
-        //pull the otu ids as a variable
-        let ids = dataSamples.samples[0].otu_ids;
-        console.log(ids)
-        
+        //filter the data to select based on the value in the dropdown
+        let samplesArray = dataSamples.samples[0];
+
+        // sort sample data by the id
+        let subject = samplesArray.filter(samplids => samplids.id.toString() === id)[0];
+
         //pull the top 10 values to fill the chart with
-        let sampleValues = dataSamples.samples[0].sample_values.slice(0,10).reverse();
-        console.log(sampleValues)
+        let sampleValues = subject.sample_values.slice(0,10).reverse();
+        console.log(sampleValues);
         
         //pull the top 10 labels to create the hover labels
-        let labels = dataSamples.samples[0].otu_labels.slice(0,10);
-        console.log (labels)
+        let labels = subject.otu_labels.slice(0,10);
+        console.log (labels);
+
+        //pull the otu ids as a variable
+        let top10 = subject.otu_ids.slice(0, 10).reverse();
+        console.log(ids);
         
         // get only top 10 otu ids for plot. 
-        let top10 = (ids.slice(0, 10)).reverse();
+        // let top10 = (ids.slice(0, 10)).reverse();
         
-        // get the otu id's to the desired form for the plot
-        let OTU_id = top10.map(d => "OTU " + d);
+        // map the otu id's to their values
+        let OTU_ids = top10.map(x => "OTU " + x);
         console.log(`OTU IDS: ${OTU_id}`)
      
         // 2. Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
@@ -29,7 +35,7 @@ function gimmePlots(id)  {
             // * Use `sample_values` as the values for the bar chart.
             x: sampleValues,
             // * Use `otu_ids` as the labels for the bar chart.
-            y: OTU_id,
+            y: OTU_ids,
             // * Use `otu_labels` as the hovertext for the chart.
             text: labels,
             marker: {color: 'red'},
@@ -44,7 +50,7 @@ function gimmePlots(id)  {
             title: "Top OTU Comparison",
             yaxis:{tickmode:"linear",},
             margin: {
-                l: 50,
+                l: 100,
                 r: 50,
                 t: 50,
                 b: 50
@@ -53,22 +59,21 @@ function gimmePlots(id)  {
     // display the bar chart
     Plotly.newPlot("bar", bar_data, bar_layout);
 
-
         // 3. Create a bubble chart that displays each sample.
         let bub_trace = {
             // * Use `otu_ids` for the x values.
-            x: dataSamples.samples[0].otu_ids,
+            x: subject.otu_ids,
             // * Use `sample_values` for the y values.
-            y: dataSamples.samples[0].sample_values,
+            y: subject.sample_values,
             mode: "markers",
             // * Use `sample_values` for the marker size.
             marker: {
-                size: dataSamples.samples[0].sample_values,
+                size: subject.sample_values,
                 // * Use `otu_ids` for the marker colors.
                 color: dataSamples.samples[0].otu_ids
             },
             // * Use `otu_labels` for the text values.
-            text:  dataSamples.samples[0].otu_labels
+            text:  subject.otu_labels
 
         };
 
@@ -109,7 +114,7 @@ function gimmeDemog(id) {
     // grab the necessary demographic data data for the id and append the info to the panel
 
         Object.entries(results).forEach((key) => {   
-            demogData.append("h5").text(key[0] + " - " + key[1] + "\n");    
+            demogData.append("h5").text(key[0] + ": " + key[1] + "\n");    
         });
     });
 }
@@ -134,8 +139,8 @@ function init() {
         );
 
         // run the other two functions to populate the page
-        gimmePlots(data.names[0]);
-        gimmeDemog(data.names[0]);
+        gimmePlots(samplesData.names[0]);
+        gimmeDemog(samplesData.names[0]);
     });
 }
 
