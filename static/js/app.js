@@ -5,7 +5,7 @@ function gimmePlots(id)  {
         console.log(samplesData)
         
         //filter the data to select based on the value in the dropdown
-        let samplesArray = samplesData.samples[0];
+        let samplesArray = samplesData.samples;
 
         // sort sample data by the id
         let subject = samplesArray.filter(samplids => samplids.id.toString() === id)[0];
