@@ -1,0 +1,35 @@
+.body{
+    background: rgb(40,40,40)
+}
+/* .card{
+
+} */
+.jblue {
+    color: rgb(100, 156, 176)
+}
+
+.jpurp {
+    color: rgb(119, 30, 135)
+}
+.youtube-icon{
+    background-image: url('../images/yt_icon_mono_dark.png');
+    height: 36px;
+    width: 36px;
+    display:inline-block;
+}
+.instagram-icon{
+    background-image: url('../images/Instagram_Glyph_White.png');
+    height: 36px;
+    width: 36px;
+    display:inline-block;
+}
+.spotify-icon{
+    background: url('../images/Spotify_Icon_RGB_White.png');
+    background-repeat: no-repeat;
+    background-position: 0 top;
+    content: "";
+    height: 36px;
+    width: 36px;
+    vertical-align: middle;
+    display:inline-block;
+}
