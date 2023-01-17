@@ -1,7 +1,10 @@
 body {
-	background: #eeeeee;
+	background: #292b2c;
 	font-family:'Mukta';
   	height: 100%;
+}
+main {
+	background: #292b2c; 
 }
 html {
   height: 100%
@@ -17,6 +20,20 @@ html {
 	background-image: url("../images/jrose_daytime_leftface_dark.jpg");
 	height: 50%;
 	background-position: 0% 65%;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+  .bgimg3 {
+	background-image: url("../images/lightright.jpg");
+	height: 50%;
+	background-position: 0% 19%;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+  .bgimg4 {
+	background-image: url("../images/shadow.jpg");
+	height: 50%;
+	background-position: 0% 40%;
 	background-repeat: no-repeat;
 	background-size: cover;
   }
@@ -158,5 +175,10 @@ html {
 	}
 	.input-group {
 		width: 100%;
+	}
+}
+@media (max-width:1199px){
+	.vanishing {
+		display: none;
 	}
 }
