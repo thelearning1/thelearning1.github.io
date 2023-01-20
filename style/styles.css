@@ -37,6 +37,13 @@ html {
 	background-repeat: no-repeat;
 	background-size: cover;
   }
+  .bgimg5 {
+	background-image: url("../images/headon.jpg");
+	height: 50%;
+	background-position: 0% 20%;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
 .navbar {
 	color: darkgrey;
 	background: #771e87 !important;
